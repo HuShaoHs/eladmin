@@ -74,7 +74,6 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setFilters(filtersMap);
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 配置不会被拦截的链接 顺序判断
-        filterChainDefinitionMap.put("/sysRelease/**","anon"); // TODO: 2020/9/3  请求接口先过滤验证
         filterChainDefinitionMap.put("/notification/**", "anon");
         filterChainDefinitionMap.put("/sys/user/login", "anon");
         filterChainDefinitionMap.put("/sys/user/token", "anon");
