@@ -37,8 +37,8 @@ import javax.servlet.http.HttpServletResponse;
 **/
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "qualification管理")
-@RequestMapping("/api/tbQualification")
+@Api(tags = "企业资质管理")
+@RequestMapping("/api/qualification")
 public class QualificationController {
 
     private final QualificationService qualificationService;
@@ -46,39 +46,39 @@ public class QualificationController {
     @Log("导出数据")
     @ApiOperation("导出数据")
     @GetMapping(value = "/download")
-    @PreAuthorize("@el.check('tbQualification:list')")
+    @PreAuthorize("@el.check('qualification:list')")
     public void download(HttpServletResponse response, QualificationQueryCriteria criteria) throws IOException {
         qualificationService.download(qualificationService.queryAll(criteria), response);
     }
 
     @GetMapping
-    @Log("查询qualification")
-    @ApiOperation("查询qualification")
-    @PreAuthorize("@el.check('tbQualification:list')")
+    @Log("查询企业资质")
+    @ApiOperation("查询企业资质")
+    @PreAuthorize("@el.check('qualification:list')")
     public ResponseEntity<Object> query(QualificationQueryCriteria criteria, Pageable pageable){
         return new ResponseEntity<>(qualificationService.queryAll(criteria,pageable),HttpStatus.OK);
     }
 
     @PostMapping
-    @Log("新增qualification")
-    @ApiOperation("新增qualification")
-    @PreAuthorize("@el.check('tbQualification:add')")
+    @Log("新增企业资质")
+    @ApiOperation("新增企业资质")
+    @PreAuthorize("@el.check('qualification:add')")
     public ResponseEntity<Object> create(@Validated @RequestBody Qualification resources){
         return new ResponseEntity<>(qualificationService.create(resources),HttpStatus.CREATED);
     }
 
     @PutMapping
-    @Log("修改qualification")
-    @ApiOperation("修改qualification")
-    @PreAuthorize("@el.check('tbQualification:edit')")
+    @Log("修改企业资质")
+    @ApiOperation("修改企业资质")
+    @PreAuthorize("@el.check('qualification:edit')")
     public ResponseEntity<Object> update(@Validated @RequestBody Qualification resources){
         qualificationService.update(resources);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @Log("删除qualification")
-    @ApiOperation("删除qualification")
-    @PreAuthorize("@el.check('tbQualification:del')")
+    @Log("删除企业资质")
+    @ApiOperation("删除企业资质")
+    @PreAuthorize("@el.check('qualification:del')")
     @DeleteMapping
     public ResponseEntity<Object> delete(@RequestBody Long[] ids) {
         qualificationService.deleteAll(ids);

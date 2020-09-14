@@ -13,17 +13,20 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.service.dto;
+package me.zhengjie.service.mapstruct;
 
-import lombok.Data;
-import java.util.List;
-import me.zhengjie.annotation.Query;
+import me.zhengjie.base.BaseMapper;
+import me.zhengjie.domain.Release;
+import me.zhengjie.service.dto.ReleaseDto;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
 /**
 * @website https://el-admin.vip
-* @author sding
+* @author hushao
 * @date 2020-09-10
 **/
-@Data
-public class CompaniesQueryCriteria{
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+public interface ReleaseMapper extends BaseMapper<ReleaseDto, Release> {
+
 }

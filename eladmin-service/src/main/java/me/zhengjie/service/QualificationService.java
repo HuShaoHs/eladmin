@@ -43,21 +43,21 @@ public interface QualificationService {
     /**
     * 查询所有数据不分页
     * @param criteria 条件参数
-    * @return List<TbQualificationDto>
+    * @return List<QualificationDto>
     */
     List<QualificationDto> queryAll(QualificationQueryCriteria criteria);
 
     /**
      * 根据ID查询
      * @param qualificationId ID
-     * @return TbQualificationDto
+     * @return QualificationDto
      */
     QualificationDto findById(Long qualificationId);
 
     /**
     * 创建
     * @param resources /
-    * @return TbQualificationDto
+    * @return QualificationDto
     */
     QualificationDto create(Qualification resources);
 

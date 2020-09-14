@@ -67,7 +67,7 @@ public class QualificationServiceImpl implements QualificationService {
     @Transactional
     public QualificationDto findById(Long qualificationId) {
         Qualification qualification = qualificationRepository.findById(qualificationId).orElseGet(Qualification::new);
-        ValidationUtil.isNull(qualification.getQualificationId(),"TbQualification","qualificationId",qualificationId);
+        ValidationUtil.isNull(qualification.getQualificationId(),"Qualification","qualificationId",qualificationId);
         return qualificationMapper.toDto(qualification);
     }
 
@@ -83,7 +83,7 @@ public class QualificationServiceImpl implements QualificationService {
     @Transactional(rollbackFor = Exception.class)
     public void update(Qualification resources) {
         Qualification qualification = qualificationRepository.findById(resources.getQualificationId()).orElseGet(Qualification::new);
-        ValidationUtil.isNull( qualification.getQualificationId(),"TbQualification","id",resources.getQualificationId());
+        ValidationUtil.isNull( qualification.getQualificationId(),"Qualification","id",resources.getQualificationId());
         qualification.copy(resources);
         qualificationRepository.save(qualification);
     }
@@ -98,19 +98,19 @@ public class QualificationServiceImpl implements QualificationService {
     @Override
     public void download(List<QualificationDto> all, HttpServletResponse response) throws IOException {
         List<Map<String, Object>> list = new ArrayList<>();
-        for (QualificationDto tbQualification : all) {
+        for (QualificationDto qualification : all) {
             Map<String,Object> map = new LinkedHashMap<>();
-            map.put("资质名称", tbQualification.getQualificationName());
-            map.put("公司ID", tbQualification.getCompanyId());
-            map.put("资质有效期", tbQualification.getValidityTime());
-            map.put("资质类型", tbQualification.getQualificationType());
-            map.put("资质介绍", tbQualification.getIntroduce());
-            map.put("资质照片", tbQualification.getPicUrl());
-            map.put("附件", tbQualification.getFiles());
-            map.put("创建者", tbQualification.getCreateBy());
-            map.put("更新者", tbQualification.getUpdateBy());
-            map.put("创建日期", tbQualification.getCreateTime());
-            map.put("更新时间", tbQualification.getUpdateTime());
+            map.put("资质名称", qualification.getQualificationName());
+            map.put("公司ID", qualification.getCompanyId());
+            map.put("资质有效期", qualification.getValidityTime());
+            map.put("资质类型", qualification.getQualificationType());
+            map.put("资质介绍", qualification.getIntroduce());
+            map.put("资质照片", qualification.getPicUrl());
+            map.put("附件", qualification.getFiles());
+            map.put("创建者", qualification.getCreateBy());
+            map.put("更新者", qualification.getUpdateBy());
+            map.put("创建日期", qualification.getCreateTime());
+            map.put("更新时间", qualification.getUpdateTime());
             list.add(map);
         }
         FileUtil.downloadExcel(list, response);

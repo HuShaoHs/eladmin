@@ -13,17 +13,16 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.service.dto;
+package me.zhengjie.repository;
 
-import lombok.Data;
-import java.util.List;
-import me.zhengjie.annotation.Query;
+import me.zhengjie.domain.Release;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
 * @website https://el-admin.vip
-* @author sding
+* @author hushao
 * @date 2020-09-10
 **/
-@Data
-public class CompaniesQueryCriteria{
+public interface ReleaseRepository extends JpaRepository<Release, String>, JpaSpecificationExecutor<Release> {
 }

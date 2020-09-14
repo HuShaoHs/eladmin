@@ -67,7 +67,7 @@ public class CompaniesServiceImpl implements CompaniesService {
     @Transactional
     public CompaniesDto findById(Long companyId) {
         Companies companies = companiesRepository.findById(companyId).orElseGet(Companies::new);
-        ValidationUtil.isNull(companies.getCompanyId(),"TbCompanies","companyId",companyId);
+        ValidationUtil.isNull(companies.getCompanyId(),"Companies","companyId",companyId);
         return companiesMapper.toDto(companies);
     }
 
@@ -83,7 +83,7 @@ public class CompaniesServiceImpl implements CompaniesService {
     @Transactional(rollbackFor = Exception.class)
     public void update(Companies resources) {
         Companies companies = companiesRepository.findById(resources.getCompanyId()).orElseGet(Companies::new);
-        ValidationUtil.isNull( companies.getCompanyId(),"TbCompanies","id",resources.getCompanyId());
+        ValidationUtil.isNull( companies.getCompanyId(),"Companies","id",resources.getCompanyId());
         companies.copy(resources);
         companiesRepository.save(companies);
     }
@@ -98,23 +98,23 @@ public class CompaniesServiceImpl implements CompaniesService {
     @Override
     public void download(List<CompaniesDto> all, HttpServletResponse response) throws IOException {
         List<Map<String, Object>> list = new ArrayList<>();
-        for (CompaniesDto tbCompanies : all) {
+        for (CompaniesDto companies : all) {
             Map<String,Object> map = new LinkedHashMap<>();
-            map.put("公司名称", tbCompanies.getCompanyName());
-            map.put("地址", tbCompanies.getAddress());
-            map.put("联系人", tbCompanies.getContactName());
-            map.put("联系电话", tbCompanies.getContactTel());
-            map.put("传真", tbCompanies.getFax());
-            map.put("邮箱", tbCompanies.getEmail());
-            map.put("手机号码", tbCompanies.getMobilePhone());
-            map.put("企业性质", tbCompanies.getEnterpriseType());
-            map.put("企业级别", tbCompanies.getEnterpriseLevel());
-            map.put("成立时间", tbCompanies.getEstablisheTime());
-            map.put("法人", tbCompanies.getLegalPerson());
-            map.put("创建者", tbCompanies.getCreateBy());
-            map.put("更新者", tbCompanies.getUpdateBy());
-            map.put("创建日期", tbCompanies.getCreateTime());
-            map.put("更新时间", tbCompanies.getUpdateTime());
+            map.put("公司名称", companies.getCompanyName());
+            map.put("地址", companies.getAddress());
+            map.put("联系人", companies.getContactName());
+            map.put("联系电话", companies.getContactTel());
+            map.put("传真", companies.getFax());
+            map.put("邮箱", companies.getEmail());
+            map.put("手机号码", companies.getMobilePhone());
+            map.put("企业性质", companies.getEnterpriseType());
+            map.put("企业级别", companies.getEnterpriseLevel());
+            map.put("成立时间", companies.getEstablisheTime());
+            map.put("法人", companies.getLegalPerson());
+            map.put("创建者", companies.getCreateBy());
+            map.put("更新者", companies.getUpdateBy());
+            map.put("创建日期", companies.getCreateTime());
+            map.put("更新时间", companies.getUpdateTime());
             list.add(map);
         }
         FileUtil.downloadExcel(list, response);

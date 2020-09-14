@@ -15,9 +15,9 @@
 */
 package me.zhengjie.service;
 
-import me.zhengjie.domain.Companies;
-import me.zhengjie.service.dto.CompaniesDto;
-import me.zhengjie.service.dto.CompaniesQueryCriteria;
+import me.zhengjie.domain.Release;
+import me.zhengjie.service.dto.ReleaseDto;
+import me.zhengjie.service.dto.ReleaseQueryCriteria;
 import org.springframework.data.domain.Pageable;
 import java.util.Map;
 import java.util.List;
@@ -27,10 +27,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
 * @website https://el-admin.vip
 * @description 服务接口
-* @author sding
+* @author hushao
 * @date 2020-09-10
 **/
-public interface CompaniesService {
+public interface ReleaseService {
 
     /**
     * 查询数据分页
@@ -38,40 +38,40 @@ public interface CompaniesService {
     * @param pageable 分页参数
     * @return Map<String,Object>
     */
-    Map<String,Object> queryAll(CompaniesQueryCriteria criteria, Pageable pageable);
+    Map<String,Object> queryAll(ReleaseQueryCriteria criteria, Pageable pageable);
 
     /**
     * 查询所有数据不分页
     * @param criteria 条件参数
-    * @return List<CompaniesDto>
+    * @return List<ReleaseDto>
     */
-    List<CompaniesDto> queryAll(CompaniesQueryCriteria criteria);
+    List<ReleaseDto> queryAll(ReleaseQueryCriteria criteria);
 
     /**
      * 根据ID查询
-     * @param companyId ID
-     * @return CompaniesDto
+     * @param id ID
+     * @return ReleaseDto
      */
-    CompaniesDto findById(Long companyId);
+    ReleaseDto findById(String id);
 
     /**
     * 创建
     * @param resources /
-    * @return CompaniesDto
+    * @return ReleaseDto
     */
-    CompaniesDto create(Companies resources);
+    ReleaseDto create(Release resources);
 
     /**
     * 编辑
     * @param resources /
     */
-    void update(Companies resources);
+    void update(Release resources);
 
     /**
     * 多选删除
     * @param ids /
     */
-    void deleteAll(Long[] ids);
+    void deleteAll(String[] ids);
 
     /**
     * 导出数据
@@ -79,5 +79,5 @@ public interface CompaniesService {
     * @param response /
     * @throws IOException /
     */
-    void download(List<CompaniesDto> all, HttpServletResponse response) throws IOException;
+    void download(List<ReleaseDto> all, HttpServletResponse response) throws IOException;
 }

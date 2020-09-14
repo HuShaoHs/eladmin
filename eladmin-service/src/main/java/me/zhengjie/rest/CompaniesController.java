@@ -37,8 +37,8 @@ import javax.servlet.http.HttpServletResponse;
 **/
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "companies管理")
-@RequestMapping("/api/tbCompanies")
+@Api(tags = "公司信息管理")
+@RequestMapping("/api/companies")
 public class CompaniesController {
 
     private final CompaniesService companiesService;
@@ -46,39 +46,39 @@ public class CompaniesController {
     @Log("导出数据")
     @ApiOperation("导出数据")
     @GetMapping(value = "/download")
-    @PreAuthorize("@el.check('tbCompanies:list')")
+    @PreAuthorize("@el.check('companies:list')")
     public void download(HttpServletResponse response, CompaniesQueryCriteria criteria) throws IOException {
         companiesService.download(companiesService.queryAll(criteria), response);
     }
 
     @GetMapping
-    @Log("查询companies")
-    @ApiOperation("查询companies")
-    @PreAuthorize("@el.check('tbCompanies:list')")
+    @Log("查询公司信息")
+    @ApiOperation("查询公司信息")
+    @PreAuthorize("@el.check('companies:list')")
     public ResponseEntity<Object> query(CompaniesQueryCriteria criteria, Pageable pageable){
         return new ResponseEntity<>(companiesService.queryAll(criteria,pageable),HttpStatus.OK);
     }
 
     @PostMapping
-    @Log("新增companies")
-    @ApiOperation("新增companies")
-    @PreAuthorize("@el.check('tbCompanies:add')")
+    @Log("新增公司信息")
+    @ApiOperation("新增公司信息")
+    @PreAuthorize("@el.check('companies:add')")
     public ResponseEntity<Object> create(@Validated @RequestBody Companies resources){
         return new ResponseEntity<>(companiesService.create(resources),HttpStatus.CREATED);
     }
 
     @PutMapping
-    @Log("修改companies")
-    @ApiOperation("修改companies")
-    @PreAuthorize("@el.check('tbCompanies:edit')")
+    @Log("修改公司信息")
+    @ApiOperation("修改公司信息")
+    @PreAuthorize("@el.check('companies:edit')")
     public ResponseEntity<Object> update(@Validated @RequestBody Companies resources){
         companiesService.update(resources);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @Log("删除companies")
-    @ApiOperation("删除companies")
-    @PreAuthorize("@el.check('tbCompanies:del')")
+    @Log("删除公司信息")
+    @ApiOperation("删除公司信息")
+    @PreAuthorize("@el.check('companies:del')")
     @DeleteMapping
     public ResponseEntity<Object> delete(@RequestBody Long[] ids) {
         companiesService.deleteAll(ids);

@@ -25,5 +25,5 @@ import me.zhengjie.annotation.Query;
 * @date 2020-09-10
 **/
 @Data
-public class QualificationQueryCriteria {
+public class QualificationQueryCriteria{
 }

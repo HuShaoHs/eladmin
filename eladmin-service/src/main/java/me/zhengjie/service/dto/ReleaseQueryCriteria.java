@@ -21,9 +21,9 @@ import me.zhengjie.annotation.Query;
 
 /**
 * @website https://el-admin.vip
-* @author sding
+* @author hushao
 * @date 2020-09-10
 **/
 @Data
-public class CompaniesQueryCriteria{
+public class ReleaseQueryCriteria{
 }

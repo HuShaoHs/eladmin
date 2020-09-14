@@ -20,6 +20,7 @@ import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 import java.io.Serializable;
 
